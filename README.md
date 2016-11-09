@@ -1,2 +1,2 @@
 # MasterEverdrive
-This is an Sega Master System emulator
+This is a Sega Master System emulator
