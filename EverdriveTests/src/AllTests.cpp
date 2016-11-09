@@ -1,4 +1,9 @@
+#include "gtest/gtest.h"
+
 int main(int argc, char* argv[])
 {
-	return 0;
+	::testing::GTEST_FLAG(filter) = "*Tests*";
+	::testing::InitGoogleTest(&argc, argv);
+
+	return RUN_ALL_TESTS();
 }
