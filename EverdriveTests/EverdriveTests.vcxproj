@@ -91,7 +91,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(SolutionDir)EverdriveLibrary\bin\$(Configuration);$(SolutionDir)deps\lib\gtest</AdditionalLibraryDirectories>
-      <AdditionalDependencies>EverdriveLibrary.lib;gtestd.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>EverdriveLibrary.lib;gtest.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
