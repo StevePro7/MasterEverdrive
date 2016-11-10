@@ -10,9 +10,9 @@ protected:
 	LogManager logManager;
 };
 
-TEST_F(LogManagerTests, Write)
-{
-	//logManager.Init();
-	//logManager.Write("logging test\n");
-	//logManager.Quit();
-}
+//TEST_F(LogManagerTests, Write)
+//{
+//	logManager.Init();
+//	logManager.Write("logging test\n");
+//	logManager.Quit();
+//}
