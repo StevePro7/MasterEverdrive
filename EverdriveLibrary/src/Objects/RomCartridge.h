@@ -11,7 +11,7 @@ namespace Everdrive
 		}
 
 		~RomCartridge()	{}
-		int GetData()	{return m_data; }
+		int GetData()	{ return m_data; }
 
 	private:
 		int m_data;

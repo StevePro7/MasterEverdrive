@@ -1,8 +1,8 @@
 #ifndef _FILE_MANAGER_H_
 #define _FILE_MANAGER_H_
 
+#include "../Constants.h"
 #include "../Objects/RomCartridge.h"
-//using namespace std;
 
 namespace Everdrive
 {
@@ -13,6 +13,7 @@ namespace Everdrive
 		~FileManager()    {}
 
 		RomCartridge InsertCartridge();
+		void InsertCartridge(const char* path, BYTE* cartridgeMemory);
 
 	private:
 		int memory;
