@@ -91,6 +91,7 @@
     <ClInclude Include="src\Managers\ConfigManager.h" />
     <ClInclude Include="src\Managers\FileManager.h" />
     <ClInclude Include="src\Managers\LogManager.h" />
+    <ClInclude Include="src\Managers\UtilManager.h" />
     <ClInclude Include="src\Objects\RomCartridge.h" />
   </ItemGroup>
   <ItemGroup>
