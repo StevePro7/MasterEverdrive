@@ -30,7 +30,7 @@ TEST_F( UtilManagerTests, BitSet )
 }
 
 // Bit reset
-TEST_F( UtilManagerTests, xBitReset )
+TEST_F( UtilManagerTests, BitReset )
 {
 	int data = utilManager.BitReset( 2, 1 );
 	ASSERT_EQ( 0, data );
