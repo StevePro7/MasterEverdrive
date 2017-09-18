@@ -7,14 +7,13 @@ namespace Everdrive
 	{
 	public:
 
-		bool GetData() { return true; }
-
 		template< typename T >
 		bool TestBit( T data, int position )
 		{
 			T mask = 1 << position;
 			return ( data & mask );
 		}
+
 	};
 }
 
