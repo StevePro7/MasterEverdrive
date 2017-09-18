@@ -32,6 +32,13 @@ namespace Everdrive
 			return data;
 		}
 
+		template< typename T >
+		T BitGetVal( T data, int position )
+		{
+			T mask = 1 << position;
+			return ( data & mask ) ? 1 : 0;
+		}
+
 	};
 }
 

@@ -35,3 +35,15 @@ TEST_F( UtilManagerTests, BitReset )
 	int data = utilManager.BitReset( 2, 1 );
 	ASSERT_EQ( 0, data );
 }
+
+// Bit get value
+TEST_F( UtilManagerTests, BitGetValZero )
+{
+	int data = utilManager.BitGetVal( 3, 2 );
+	ASSERT_EQ( 0, data );
+}
+TEST_F( UtilManagerTests, BitGetValOne )
+{
+	int data = utilManager.BitGetVal( 4, 2 );
+	ASSERT_EQ( 1, data );
+}
