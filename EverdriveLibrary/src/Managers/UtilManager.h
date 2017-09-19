@@ -15,6 +15,20 @@ namespace Everdrive
 		}
 
 		template< typename T >
+		T BitGetVal( T data, int position )
+		{
+			T mask = 1 << position;
+			return ( data & mask ) ? 1 : 0;
+		}
+
+		template< typename T >
+		T BitGet( T data, int position )
+		{
+			T mask = 1 << position;
+			return mask;
+		}
+
+		template< typename T >
 		T BitSet( T data, int position )
 		{
 			T mask = 1 << position;
@@ -33,10 +47,18 @@ namespace Everdrive
 		}
 
 		template< typename T >
-		T BitGetVal( T data, int position )
+		int BitCount( T data, int total )
 		{
-			T mask = 1 << position;
-			return ( data & mask ) ? 1 : 0;
+			int result = 0;
+			for( int i = 0; i < total; i++ )
+			{
+				if( TestBit( data, i ) )
+				{
+					result++;
+				}
+			}
+
+			return result;
 		}
 
 	};

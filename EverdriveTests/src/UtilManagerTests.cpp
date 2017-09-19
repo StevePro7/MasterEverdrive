@@ -22,6 +22,25 @@ TEST_F( UtilManagerTests, TestBitTrue )
 	ASSERT_TRUE( condition );
 }
 
+// Bit get value
+TEST_F( UtilManagerTests, BitGetValZero )
+{
+	int data = utilManager.BitGetVal( 3, 2 );
+	ASSERT_EQ( 0, data );
+}
+TEST_F( UtilManagerTests, BitGetValOne )
+{
+	int data = utilManager.BitGetVal( 4, 2 );
+	ASSERT_EQ( 1, data );
+}
+
+// Bit get
+TEST_F( UtilManagerTests, BitGet )
+{
+	int data = utilManager.BitGetVal( 14, 3 );
+	ASSERT_EQ( 1, data );
+}
+
 // Bit set
 TEST_F( UtilManagerTests, BitSet )
 {
@@ -36,14 +55,9 @@ TEST_F( UtilManagerTests, BitReset )
 	ASSERT_EQ( 0, data );
 }
 
-// Bit get value
-TEST_F( UtilManagerTests, BitGetValZero )
+// Bit count
+TEST_F( UtilManagerTests, BitCount )
 {
-	int data = utilManager.BitGetVal( 3, 2 );
-	ASSERT_EQ( 0, data );
-}
-TEST_F( UtilManagerTests, BitGetValOne )
-{
-	int data = utilManager.BitGetVal( 4, 2 );
-	ASSERT_EQ( 1, data );
+	int data = utilManager.BitCount( 7, 3 );
+	ASSERT_EQ( 3, data );
 }
