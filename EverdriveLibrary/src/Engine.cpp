@@ -4,6 +4,8 @@ namespace Everdrive
 {
 	void Engine::Init()
 	{
+		logManager.Init();
+		configManager.Init();
 	}
 
 	void Engine::Play()
@@ -12,5 +14,6 @@ namespace Everdrive
 
 	void Engine::Quit()
 	{
+		logManager.Quit();
 	}
 }
