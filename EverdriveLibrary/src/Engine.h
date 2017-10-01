@@ -4,6 +4,7 @@
 #include "Managers/ConfigManager.h"
 #include "Managers/FileManager.h"
 #include "Managers/LogManager.h"
+#include "Managers/UtilManager.h"
 
 namespace Everdrive
 {
@@ -23,11 +24,13 @@ namespace Everdrive
 		ConfigManager& ConfigManager() { return configManager; }
 		FileManager& FileManager() { return fileManager; }
 		LogManager& LogManager() { return logManager; }
+		UtilManager& UtilManager() { return utilManager; }
 
 	private:
 		Everdrive::ConfigManager configManager;
 		Everdrive::FileManager fileManager;
 		Everdrive::LogManager logManager;
+		Everdrive::UtilManager utilManager;
 	};
 }
 
