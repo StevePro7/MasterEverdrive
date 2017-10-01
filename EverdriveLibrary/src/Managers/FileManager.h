@@ -12,8 +12,8 @@ namespace Everdrive
 		FileManager()     {}
 		~FileManager()    {}
 
-		RomCartridge InsertCartridge();
 		void InsertCartridge(const char* path, BYTE* cartridgeMemory);
+		void InsertCartridge(const char* path, RomCartridge* cartridge);
 
 	private:
 		int memory;

@@ -3,11 +3,6 @@
 
 namespace Everdrive
 {
-	/*RomCartridge FileManager::InsertCartridge()
-	{
-		return RomCartridge(1);
-	}*/
-
 	void FileManager::InsertCartridge(const char* path, BYTE* cartridgeMemory)
 	{
 		FILE *in = NULL;

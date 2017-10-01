@@ -1,20 +1,19 @@
 #ifndef _ROM_CARTRIDGE_H_
 #define _ROM_CARTRIDGE_H_
 
+#include "../Constants.h"
+
 namespace Everdrive
 {
 	class RomCartridge
 	{
 	public:
-		RomCartridge(int data) : m_data(data) 
-		{
-		}
-
+		RomCartridge() {}
 		~RomCartridge()	{}
-		int GetData()	{ return m_data; }
 
-	private:
-		int m_data;
+	public:
+		BYTE m_CartridgeMemory[0x100000];
+		BYTE m_InternalMemory[0x10000];
 	};
 }
 
