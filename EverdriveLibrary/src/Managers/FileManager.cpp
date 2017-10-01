@@ -20,20 +20,20 @@ namespace Everdrive
 		fclose(in);
 	}
 
-	void FileManager::InsertCartridge(const char* path, RomCartridge* cartridge)
-	{
-		FILE *in = NULL;
+	//void FileManager::InsertCartridge(const char* path, RomCartridge* cartridge)
+	//{
+	//	FILE *in = NULL;
 
-		// get the file size
-		in = fopen( path, "rb" );
-		fseek( in, 0L, SEEK_END );
-		long endPos = ftell( in );
-		fclose(in);
+	//	// get the file size
+	//	in = fopen( path, "rb" );
+	//	fseek( in, 0L, SEEK_END );
+	//	long endPos = ftell( in );
+	//	fclose(in);
 
-		in = fopen( path, "rb" );
-		endPos = endPos % 16384 ;
+	//	in = fopen( path, "rb" );
+	//	endPos = endPos % 16384 ;
 
-		fread(cartridge->m_CartridgeMemory, 1, 0x100000, in);
-		fclose(in);
-	}
+	//	fread(cartridge->m_CartridgeMemory, 1, 0x100000, in);
+	//	fclose(in);
+	//}
 }
