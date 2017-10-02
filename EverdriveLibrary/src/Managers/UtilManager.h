@@ -11,7 +11,7 @@ namespace Everdrive
 		bool TestBit( T data, int position )
 		{
 			T mask = 1 << position;
-			return ( data & mask );
+			return ( data & mask ) ? true : false;
 		}
 
 		template< typename T >
