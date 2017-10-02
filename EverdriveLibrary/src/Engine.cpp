@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Defines.h"
 
 namespace Everdrive
 {
@@ -13,8 +14,8 @@ namespace Everdrive
 		fileManager.InsertCartridge(path, cartridge);*/
 
 		const char* path = "rom/MonacoGP.sms";
-		BYTE* cartridgeMemory = new BYTE[0x100000];
-		memset(cartridgeMemory, 0, 0x100000);
+		BYTE* cartridgeMemory = new BYTE[ONE_MEGA_BYTE];
+		memset(cartridgeMemory, 0, ONE_MEGA_BYTE);
 		fileManager.InsertCartridge(path, cartridgeMemory);
 		delete cartridgeMemory;
 	}
