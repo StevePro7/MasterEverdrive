@@ -10,7 +10,7 @@ namespace Everdrive
 
 		/*const char* path = "rom/MonacoGP.sms";
 		RomCartridge* cartridge = new RomCartridge;
-		memset(cartridge->m_CartridgeMemory, 0, 0x100000);
+		memset(cartridge->m_CartridgeMemory, 0, ONE_MEGA_BYTE);
 		fileManager.InsertCartridge(path, cartridge);*/
 
 		const char* path = "rom/MonacoGP.sms";

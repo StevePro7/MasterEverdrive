@@ -13,7 +13,7 @@ protected:
 
 //TEST_F(FileManagerTests, InsertCartridge)
 //{
-//	BYTE cartridgeMemory[0x10000];
+//	BYTE cartridgeMemory[SIXTY_FOUR_KB];
 //	memset(cartridgeMemory, 0, sizeof(cartridgeMemory));
 //
 //	fileManager.InsertCartridge("rom/MonacoGP.sms", cartridgeMemory);

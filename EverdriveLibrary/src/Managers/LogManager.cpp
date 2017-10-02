@@ -1,5 +1,5 @@
 #include "LogManager.h"
-#include "../Constants.h"
+#include "Constants.h"
 #include <stdarg.h>
 
 namespace Everdrive

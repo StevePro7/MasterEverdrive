@@ -1,5 +1,5 @@
 #include "FileManager.h"
-#include "../Defines.h"
+#include "Defines.h"
 #include <stdio.h>
 
 namespace Everdrive
