@@ -5,9 +5,12 @@
 #include "Managers/CPUManager.h"
 #include "Managers/FileManager.h"
 #include "Managers/LogManager.h"
+#include "Managers/MemoryManager.h"
 #include "Managers/PSGManager.h"
+#include "Managers/SoundManager.h"
 #include "Managers/UtilManager.h"
 #include "Managers/VDPManager.h"
+#include "Managers/VideoManager.h"
 
 namespace Everdrive
 {
@@ -28,18 +31,24 @@ namespace Everdrive
 		CPUManager& CPUManager() { return cpuManager; }
 		FileManager& FileManager() { return fileManager; }
 		LogManager& LogManager() { return logManager; }
+		MemoryManager& MemoryManager() { return memoryManager; }
 		PSGManager& PSGManager() { return psgManager; }
+		SoundManager& SoundManager() { return soundManager; }
 		UtilManager& UtilManager() { return utilManager; }
 		VDPManager& VDPManager() { return vdpManager; }
+		VideoManager& VideoManager() { return videoManager; }
 
 	private:
 		Everdrive::ConfigManager configManager;
 		Everdrive::CPUManager cpuManager;
 		Everdrive::FileManager fileManager;
 		Everdrive::LogManager logManager;
+		Everdrive::MemoryManager memoryManager;
 		Everdrive::PSGManager psgManager;
+		Everdrive::SoundManager soundManager;
 		Everdrive::UtilManager utilManager;
 		Everdrive::VDPManager vdpManager;
+		Everdrive::VideoManager videoManager;
 	};
 }
 
