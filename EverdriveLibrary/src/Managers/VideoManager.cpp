@@ -16,12 +16,13 @@ namespace Everdrive
 		}
 
 		SDL_WM_SetCaption( "Master System", NULL );
+		SDL_WM_SetIcon( SDL_LoadBMP( "sega.bmp" ), NULL );
 		if( SDL_SetVideoMode( m_Width, m_Height, 8, SDL_OPENGL ) == NULL )
 		{
 			return;
 		}
 
-			// InitGL
+		// InitGL
 		glViewport(0, 0, m_Width, m_Height);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
