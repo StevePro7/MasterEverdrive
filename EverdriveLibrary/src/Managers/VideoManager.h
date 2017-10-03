@@ -8,6 +8,12 @@ namespace Everdrive
 	public:
 		VideoManager()     {}
 		~VideoManager()    {}
+
+		void Init();
+
+	private:
+		int m_Width;
+		int m_Height;
 	};
 }
 

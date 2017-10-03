@@ -93,6 +93,7 @@
     <ClInclude Include="src\Managers\ConfigManager.h" />
     <ClInclude Include="src\Managers\CPUManager.h" />
     <ClInclude Include="src\Managers\FileManager.h" />
+    <ClInclude Include="src\Managers\InputManager.h" />
     <ClInclude Include="src\Managers\LogManager.h" />
     <ClInclude Include="src\Managers\MemoryManager.h" />
     <ClInclude Include="src\Managers\PSGManager.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="src\Managers\ConfigManager.cpp" />
     <ClCompile Include="src\Managers\CPUManager.cpp" />
     <ClCompile Include="src\Managers\FileManager.cpp" />
+    <ClCompile Include="src\Managers\InputManager.cpp" />
     <ClCompile Include="src\Managers\LogManager.cpp" />
     <ClCompile Include="src\Managers\MemoryManager.cpp" />
     <ClCompile Include="src\Managers\PSGManager.cpp" />
