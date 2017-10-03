@@ -62,7 +62,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(SolutionDir)EverdriveLibrary\bin\$(Configuration);$(SolutionDir)deps\lib\SDL;$(SolutionDir)deps\lib\gl;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>EverdriveLibrary.lib;winmm.lib;SDL.lib;SDLmain.lib;OpenGL32.lib;glut32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>

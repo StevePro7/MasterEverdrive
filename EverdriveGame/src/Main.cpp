@@ -1,6 +1,6 @@
 #include "Main.h"
 
-int main(int argc, char* argv[])
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	Engine::Instance().Init();
 	Engine::Instance().Play();

@@ -24,6 +24,9 @@ namespace Everdrive
 
 	void Engine::Play()
 	{
+		while( true )
+		{
+		}
 	}
 
 	void Engine::Quit()

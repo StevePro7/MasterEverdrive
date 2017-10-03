@@ -14,6 +14,8 @@ namespace Everdrive
 		{
 			return;
 		}
+
+		SDL_WM_SetCaption( "Master System", NULL );
 		if( SDL_SetVideoMode( m_Width, m_Height, 8, SDL_OPENGL ) == NULL )
 		{
 			return;
@@ -34,7 +36,6 @@ namespace Everdrive
 		glDisable(GL_DITHER);
 		glDisable(GL_BLEND);
 
-		SDL_WM_SetCaption( "Sega Master System", NULL );
 		return;
 	}
 }
