@@ -1,4 +1,5 @@
 #include "FileManager.h"
+#include "Defines.h"
 #include <stdio.h>
 
 namespace Everdrive
@@ -16,7 +17,7 @@ namespace Everdrive
 		in = fopen( path, "rb" );
 		endPos = endPos % 16384 ;
 
-		fread(cartridgeMemory, 1, 0x100000, in);
+		fread(cartridgeMemory, 1, ONE_MEGA_BYTE, in);
 		fclose(in);
 	}
 
@@ -33,7 +34,7 @@ namespace Everdrive
 	//	in = fopen( path, "rb" );
 	//	endPos = endPos % 16384 ;
 
-	//	fread(cartridge->m_CartridgeMemory, 1, 0x100000, in);
+	//	fread(cartridge->m_CartridgeMemory, 1, ONE_MEGA_BYTE, in);
 	//	fclose(in);
 	//}
 }

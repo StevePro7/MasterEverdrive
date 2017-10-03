@@ -1,6 +1,6 @@
 #include "ConfigManager.h"
-#include "../Constants.h"
-#include "../Engine.h"
+#include "Constants.h"
+#include "Engine.h"
 #include <fstream>
 
 using namespace std;

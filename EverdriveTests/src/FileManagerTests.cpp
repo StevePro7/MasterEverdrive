@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "Managers/FileManager.h"
+#include "Defines.h"
 
 using namespace testing;
 using namespace Everdrive;
@@ -12,7 +13,7 @@ protected:
 
 //TEST_F(FileManagerTests, InsertCartridge)
 //{
-//	BYTE cartridgeMemory[0x10000];
+//	BYTE cartridgeMemory[SIXTY_FOUR_KB];
 //	memset(cartridgeMemory, 0, sizeof(cartridgeMemory));
 //
 //	fileManager.InsertCartridge("rom/MonacoGP.sms", cartridgeMemory);
@@ -31,8 +32,8 @@ protected:
 TEST_F(FileManagerTests, InsertCartridge)
 {
 	const char* path = "rom/MonacoGP.sms";
-	BYTE* cartridgeMemory = new BYTE[0x100000];
-	memset(cartridgeMemory, 0, 0x100000);
+	BYTE* cartridgeMemory = new BYTE[ONE_MEGA_BYTE];
+	memset(cartridgeMemory, 0, ONE_MEGA_BYTE);
 	fileManager.InsertCartridge(path, cartridgeMemory);
 	delete cartridgeMemory;
 	ASSERT_EQ(1, 1);
