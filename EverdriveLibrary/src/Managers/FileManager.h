@@ -11,7 +11,7 @@ namespace Everdrive
 		FileManager()     {}
 		~FileManager()    {}
 
-		void InsertCartridge(const char* path, BYTE* cartridgeMemory);
+		void InsertCartridge( const char* path, BYTE* cartridgeMemory );
 	};
 }
 

@@ -100,6 +100,7 @@
     <ClCompile Include="src\CPUManagerTests.cpp" />
     <ClCompile Include="src\EngineTests.cpp" />
     <ClCompile Include="src\FileManagerTests.cpp" />
+    <ClCompile Include="src\GameManagerTests.cpp" />
     <ClCompile Include="src\InputManagerTests.cpp" />
     <ClCompile Include="src\LogManagerTests.cpp" />
     <ClCompile Include="src\MemoryManagerTests.cpp" />
