@@ -80,6 +80,9 @@
     <ClInclude Include="src\Chips\Z80.Mnemonics.h">
       <Filter>Header Files\Chips</Filter>
     </ClInclude>
+    <ClInclude Include="src\Managers\GameManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine.cpp">
@@ -120,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="src\Chips\Z80.cpp">
       <Filter>Source Files\Chips</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\GameManager.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

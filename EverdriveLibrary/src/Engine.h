@@ -4,6 +4,7 @@
 #include "Managers/ConfigManager.h"
 #include "Managers/CPUManager.h"
 #include "Managers/FileManager.h"
+#include "Managers/GameManager.h"
 #include "Managers/InputManager.h"
 #include "Managers/LogManager.h"
 #include "Managers/MemoryManager.h"
@@ -31,6 +32,7 @@ namespace Everdrive
 		ConfigManager& ConfigManager() { return configManager; }
 		CPUManager& CPUManager() { return cpuManager; }
 		FileManager& FileManager() { return fileManager; }
+		GameManager& GameManager() { return gameManager; }
 		InputManager& InputManager() { return inputManager; }
 		LogManager& LogManager() { return logManager; }
 		MemoryManager& MemoryManager() { return memoryManager; }
@@ -44,6 +46,7 @@ namespace Everdrive
 		Everdrive::ConfigManager configManager;
 		Everdrive::CPUManager cpuManager;
 		Everdrive::FileManager fileManager;
+		Everdrive::GameManager gameManager;
 		Everdrive::InputManager inputManager ;
 		Everdrive::LogManager logManager;
 		Everdrive::MemoryManager memoryManager;
