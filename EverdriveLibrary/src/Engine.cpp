@@ -8,6 +8,7 @@ namespace Everdrive
 		logManager.Init();
 		configManager.Init();
 
+		cpuManager.Init();
 		videoManager.Init();
 
 		/*const char* path = "rom/MonacoGP.sms";

@@ -3,7 +3,7 @@
 
 namespace Everdrive
 {
-	void CPUManager::Reset()
+	void CPUManager::Init()
 	{
 		CONTEXTZ80* context = &m_ContextZ80;
 

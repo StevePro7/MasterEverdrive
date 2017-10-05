@@ -11,7 +11,7 @@ namespace Everdrive
 		CPUManager()     {}
 		~CPUManager()    {}
 
-		void Reset();
+		void Init();
 
 		CONTEXTZ80* GetContext() { return &m_ContextZ80; }
 

@@ -11,9 +11,9 @@ protected:
 	CPUManager cpuManager;
 };
 
-TEST_F(CPUManagerTests, Reset)
+TEST_F( CPUManagerTests, Init )
 {
-	cpuManager.Reset();
+	cpuManager.Init();
 
 	CONTEXTZ80* context = cpuManager.GetContext();
 
