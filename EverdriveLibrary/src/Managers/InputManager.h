@@ -8,6 +8,8 @@ namespace Everdrive
 	public:
 		InputManager()     {}
 		~InputManager()    {}
+
+		void Init();
 	};
 }
 
