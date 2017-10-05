@@ -13,8 +13,8 @@ namespace Everdrive
 
 		void Reset();
 
-		//CONTEXTZ80* GetContext() { return &m_ContextZ80; }
-		CONTEXTZ80 GetContext() const { return m_ContextZ80; }
+		CONTEXTZ80* GetContext() { return &m_ContextZ80; }
+		//CONTEXTZ80 GetContext() const { return m_ContextZ80; }
 
 	private:
 		CONTEXTZ80 m_ContextZ80;
