@@ -17,7 +17,9 @@ namespace Everdrive
 		MemoryManager()     {}
 		~MemoryManager()    {}
 
-		void Reset();
+		void Init();
+		BYTE* GetCartridgeMemory() { return m_CartridgeMemory; }
+		BYTE* GetInternalMemory() { return m_InternalMemory; }
 
 	private:
 		BYTE m_CartridgeMemory[ONE_MEGA_BYTE];

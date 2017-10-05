@@ -1,5 +1,4 @@
 #include "CPUManager.h"
-#include <memory.h>
 
 namespace Everdrive
 {
