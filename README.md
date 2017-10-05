@@ -10,6 +10,7 @@ This is a Sega Master System emulator
 Ever
 Ignore LNK4099 errors - can't be done!  Rebuild and find the PDB files and rename
 https://stackoverflow.com/questions/661606/visual-c-how-to-disable-specific-linker-warnings
+/ignore:4099
 
 LNK4204 solved
 https://stackoverflow.com/questions/30517604/how-do-i-fix-lnk4204-or-get-rid-of-it
