@@ -26,6 +26,19 @@ TEST_F(CPUManagerTests, Reset)
 	ASSERT_EQ( 0x0, context->m_RegisterDEPrime.reg );
 	ASSERT_EQ( 0x0, context->m_RegisterHLPrime.reg );
 	ASSERT_EQ( 0xDFF0, context->m_StackPointer.reg );
-	ASSERT_EQ( 0x0, context->m_RegisterIX.reg );
-	ASSERT_EQ( 0x0, context->m_RegisterIY.reg );
+	ASSERT_EQ( 0, context->m_RegisterIX.reg );
+	ASSERT_EQ( 0, context->m_RegisterIY.reg );
+	ASSERT_EQ( 0, context->m_RegisterI );
+	ASSERT_EQ( 0, context->m_RegisterR );
+	ASSERT_EQ( 0, context->m_ProgramCounter );
+	ASSERT_EQ( 0, context->m_ProgramCounterStart );
+	ASSERT_EQ( 0, context->m_OpcodeCycle );
+	ASSERT_EQ( false, context->m_Halted );
+	ASSERT_EQ( false, context->m_IFF1 );
+	ASSERT_EQ( false, context->m_IFF2 );
+	ASSERT_EQ( false, context->m_EIPending );
+	ASSERT_EQ( 1, context->m_InteruptMode );
+	ASSERT_EQ( false, context->m_Halted );
+	ASSERT_EQ( false, context->m_NMI );
+	ASSERT_EQ( false, context->m_NMIServicing );
 }

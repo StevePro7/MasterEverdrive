@@ -1,4 +1,5 @@
 #include "CPUManager.h"
+#include <memory.h>
 
 namespace Everdrive
 {
@@ -17,5 +18,17 @@ namespace Everdrive
 		context->m_StackPointer.reg = 0xDFF0 ;
 		context->m_RegisterIX.reg = 0  ;
 		context->m_RegisterIY.reg = 0  ;
+		context->m_RegisterI = 0 ;
+		context->m_RegisterR = 0 ;
+		context->m_ProgramCounter = 0 ;
+		context->m_ProgramCounterStart = 0 ;
+		context->m_OpcodeCycle = 0;
+		context->m_IFF1 = false ;
+		context->m_IFF2 = false ;
+		context->m_Halted = false ;
+		context->m_InteruptMode = 1 ;
+		context->m_NMI = false ;
+		context->m_NMIServicing = false ;
+		context->m_EIPending = false;
 	}
 }

@@ -14,39 +14,45 @@
 
 namespace Everdrive
 {
-	typedef BYTE ( *Z80ReadMemory )( WORD );
-	typedef BYTE ( *Z80WriteMemory )( WORD );
-	typedef BYTE ( *Z80IOReadMemory )( BYTE );
-	typedef void ( *Z80IOWriteMemory ) (BYTE, BYTE );
-
-
 	// reg  0x1234
 	// hi   0x12
 	// lo     0x34
 	union REGISTERZ80
 	{
-		WORD reg;
+		WORD reg ;
 		struct
 		{
-			BYTE lo;
-			BYTE hi;
+			BYTE lo ;
+			BYTE hi ;
 		};
 	};
 
 
 	struct CONTEXTZ80
 	{
-		REGISTERZ80 m_RegisterAF;
-		REGISTERZ80 m_RegisterBC;
-		REGISTERZ80 m_RegisterDE;
-		REGISTERZ80 m_RegisterHL;
-		REGISTERZ80 m_RegisterAFPrime;
-		REGISTERZ80 m_RegisterBCPrime;
-		REGISTERZ80 m_RegisterDEPrime;
-		REGISTERZ80 m_RegisterHLPrime;
-		REGISTERZ80 m_StackPointer;
-		REGISTERZ80	m_RegisterIX;
-		REGISTERZ80	m_RegisterIY;
+		REGISTERZ80 		m_RegisterAF ;
+		REGISTERZ80 		m_RegisterBC ;
+		REGISTERZ80 		m_RegisterDE ;
+		REGISTERZ80 		m_RegisterHL ;
+		REGISTERZ80 		m_RegisterAFPrime ;
+		REGISTERZ80 		m_RegisterBCPrime ;
+		REGISTERZ80 		m_RegisterDEPrime ;
+		REGISTERZ80 		m_RegisterHLPrime ;
+		REGISTERZ80 		m_StackPointer ;
+		REGISTERZ80			m_RegisterIX ;
+		REGISTERZ80			m_RegisterIY ;
+		BYTE				m_RegisterI ;
+		BYTE				m_RegisterR ;
+		WORD				m_ProgramCounter ;
+		WORD				m_ProgramCounterStart ;
+		BYTE				m_OpcodeCycle ;
+		bool				m_Halted ;
+		bool				m_IFF1 ;
+		bool				m_IFF2 ;
+		bool				m_EIPending ;
+		int					m_InteruptMode ;
+		bool				m_NMI ;
+		bool				m_NMIServicing ;
 	};
 }
 
