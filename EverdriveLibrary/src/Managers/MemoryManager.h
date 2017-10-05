@@ -6,7 +6,7 @@
 namespace Everdrive
 {
 	typedef BYTE ( *Z80ReadMemory )( WORD );
-	typedef BYTE ( *Z80WriteMemory )( WORD );
+	typedef void ( *Z80WriteMemory )( WORD, BYTE );
 	typedef BYTE ( *Z80IOReadMemory )( BYTE );
 	typedef void ( *Z80IOWriteMemory ) (BYTE, BYTE );
 
@@ -14,10 +14,22 @@ namespace Everdrive
 	class MemoryManager
 	{
 	public:
+		static MemoryManager& Instance()
+		{
+			static MemoryManager instance;
+			return instance;
+		}
+
 		MemoryManager()     {}
 		~MemoryManager()    {}
 
 		void Init();
+
+		BYTE ReadMemory( const WORD& address );
+		void WriteMemory( const WORD& address, const BYTE& data );
+		BYTE ReadIOMemory( const WORD& address );
+		void WriteIOMemory( const WORD& address, const BYTE& data );
+
 		BYTE* GetCartridgeMemory() { return m_CartridgeMemory; }
 		BYTE* GetInternalMemory() { return m_InternalMemory; }
 
