@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[])
 {
-	::testing::GTEST_FLAG(filter) = "FileManagerTests*";
+	::testing::GTEST_FLAG(filter) = "CPUManagerTests*";
 	::testing::InitGoogleTest(&argc, argv);
 
 	return RUN_ALL_TESTS();

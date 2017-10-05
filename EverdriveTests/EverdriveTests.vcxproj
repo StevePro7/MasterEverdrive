@@ -97,6 +97,7 @@
   <ItemGroup>
     <ClCompile Include="src\AllTests.cpp" />
     <ClCompile Include="src\ConfigManagerTests.cpp" />
+    <ClCompile Include="src\CPUManagerTests.cpp" />
     <ClCompile Include="src\EngineTests.cpp" />
     <ClCompile Include="src\FileManagerTests.cpp" />
     <ClCompile Include="src\LogManagerTests.cpp" />

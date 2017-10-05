@@ -1,8 +1,6 @@
 #ifndef _CPU_MANAGER_H_
 #define _CPU_MANAGER_H_
 
-using namespace std;
-
 namespace Everdrive
 {
 	class CPUManager
@@ -10,6 +8,12 @@ namespace Everdrive
 	public:
 		CPUManager()     {}
 		~CPUManager()    {}
+
+		void Reset();
+
+		int GetData() { return data; }
+	private:
+		int data;
 	};
 }
 
