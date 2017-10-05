@@ -41,8 +41,9 @@ namespace Everdrive
 
 	void MemoryManager::Init()
 	{
-		memset( m_CartridgeMemory, 0, ONE_MEGA_BYTE );
-		memset( m_InternalMemory, 0, SIXTY_FOUR_KB );
+		memset( m_CartridgeMemory, 0, sizeof( m_CartridgeMemory ) );
+		memset( m_InternalMemory, 0, sizeof( m_InternalMemory ) );
+		memset( m_RamBank, 0, sizeof( m_RamBank ) );
 
 		m_InternalMemory[0xFFFF] = 2 ; // official Sega doc
 		m_InternalMemory[0xFFFE] = 1 ; // official Sega doc

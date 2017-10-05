@@ -14,5 +14,6 @@ TEST_F( InputManagerTests, Init )
 {
 	inputManager.Init();
 
-	ASSERT_EQ( 1, 2 );
+	ASSERT_EQ( 0xFF, inputManager.GetKeyboardPort1() );
+	ASSERT_EQ( 0xFF, inputManager.GetKeyboardPort2() );
 }

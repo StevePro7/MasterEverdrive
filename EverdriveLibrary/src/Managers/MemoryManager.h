@@ -32,10 +32,13 @@ namespace Everdrive
 
 		BYTE* GetCartridgeMemory() { return m_CartridgeMemory; }
 		BYTE* GetInternalMemory() { return m_InternalMemory; }
+		BYTE* GetRamBank( BYTE bank ) { return m_RamBank[ bank ]; }
+		BYTE GetRamBank( BYTE bank, WORD address ) { return m_RamBank[bank][address]; }
 
 	private:
 		BYTE m_CartridgeMemory[ONE_MEGA_BYTE];
 		BYTE m_InternalMemory[SIXTY_FOUR_KB] ;
+		BYTE m_RamBank[0x2][SIXTEEN_KBYTE] ;
 
 		Z80ReadMemory		m_FuncPtrRead ;
 		Z80WriteMemory		m_FuncPtrWrite ;
