@@ -40,6 +40,13 @@ namespace Everdrive
 		REGISTERZ80 m_RegisterBC;
 		REGISTERZ80 m_RegisterDE;
 		REGISTERZ80 m_RegisterHL;
+		REGISTERZ80 m_RegisterAFPrime;
+		REGISTERZ80 m_RegisterBCPrime;
+		REGISTERZ80 m_RegisterDEPrime;
+		REGISTERZ80 m_RegisterHLPrime;
+		REGISTERZ80 m_StackPointer;
+		REGISTERZ80	m_RegisterIX;
+		REGISTERZ80	m_RegisterIY;
 	};
 }
 

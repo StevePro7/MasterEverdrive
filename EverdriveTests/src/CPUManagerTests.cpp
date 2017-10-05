@@ -21,4 +21,11 @@ TEST_F(CPUManagerTests, Reset)
 	ASSERT_EQ( 0x0, context.m_RegisterBC.reg );
 	ASSERT_EQ( 0x0, context.m_RegisterDE.reg );
 	ASSERT_EQ( 0x0, context.m_RegisterHL.reg );
+	ASSERT_EQ( 0x0, context.m_RegisterAFPrime.reg );
+	ASSERT_EQ( 0x0, context.m_RegisterBCPrime.reg );
+	ASSERT_EQ( 0x0, context.m_RegisterDEPrime.reg );
+	ASSERT_EQ( 0x0, context.m_RegisterHLPrime.reg );
+	ASSERT_EQ( 0xDFF0, context.m_StackPointer.reg );
+	ASSERT_EQ( 0x0, context.m_RegisterIX.reg );
+	ASSERT_EQ( 0x0, context.m_RegisterIY.reg );
 }
