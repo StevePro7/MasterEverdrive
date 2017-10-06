@@ -10,7 +10,6 @@ namespace Everdrive
 	typedef BYTE ( *Z80IOReadMemory )( BYTE );
 	typedef void ( *Z80IOWriteMemory ) (BYTE, BYTE );
 
-
 	class MemoryManager
 	{
 	public:
@@ -23,23 +22,25 @@ namespace Everdrive
 		MemoryManager()     {}
 		~MemoryManager()    {}
 
-		void Init();
-		void Load( const BYTE* cartridgeMemory, long endPos );
-
 		BYTE ReadMemory( const WORD& address );
 		void WriteMemory( const WORD& address, const BYTE& data );
 		BYTE ReadIOMemory( const WORD& address );
 		void WriteIOMemory( const WORD& address, const BYTE& data );
 
+		void Init();
+		void Load( const BYTE* cartridgeMemory, const long& endPos );
+
+		void DoMemPageCM( const WORD& address, const BYTE& data );
+		void DoMemPageCMImpl( const WORD& address, const BYTE& page );
+
+		// Properties.
 		BYTE* GetCartridgeMemory() { return m_CartridgeMemory; }
 		BYTE* GetInternalMemory() { return m_InternalMemory; }
 		BYTE* GetRamBank( BYTE bank ) { return m_RamBank[ bank ]; }
 		BYTE GetRamBank( BYTE bank, WORD address ) { return m_RamBank[bank][address]; }
-
-		BYTE GetFirstBankPage() { return m_FirstBankPage; }
-		BYTE GetSecondBankPage() { return m_SecondBankPage; }
-		BYTE GetThirdBankPage() { return m_ThirdBankPage; }
-
+		BYTE GetFirstBankPage() const { return m_FirstBankPage; }
+		BYTE GetSecondBankPage() const { return m_SecondBankPage; }
+		BYTE GetThirdBankPage() const { return m_ThirdBankPage; }
 		int GetCurrentRam() const { return m_CurrentRam; }
 		bool OneMegCartridge() const { return m_OneMegCartridge; }
 
@@ -47,13 +48,11 @@ namespace Everdrive
 		BYTE m_CartridgeMemory[ONE_MEGA_BYTE];
 		BYTE m_InternalMemory[SIXTY_FOUR_KB] ;
 		BYTE m_RamBank[0x2][SIXTEEN_KBYTE] ;
-
 		BYTE m_FirstBankPage ;
 		BYTE m_SecondBankPage ;
 		BYTE m_ThirdBankPage ;
-
-		int m_CurrentRam ;
 		bool m_OneMegCartridge ;
+		int m_CurrentRam ;
 
 		Z80ReadMemory		m_FuncPtrRead ;
 		Z80WriteMemory		m_FuncPtrWrite ;

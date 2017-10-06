@@ -1,4 +1,5 @@
 #include "MemoryManager.h"
+#include "Engine.h"
 #include <memory.h>
 
 #define HALF_MEGA_BYTE	 0x80000			//   524,288	512KB
@@ -54,8 +55,8 @@ namespace Everdrive
 		m_SecondBankPage = 1 ;
 		m_ThirdBankPage = 2 ;
 
-		m_CurrentRam = -1 ;
 		m_OneMegCartridge = false ;
+		m_CurrentRam = -1 ;
 
 		m_FuncPtrRead = &ReadByte ;
 		m_FuncPtrWrite = &WriteByte ;
@@ -63,12 +64,40 @@ namespace Everdrive
 		m_FuncPtrIOWrite = &WriteIOByte ;
 	}
 
-	void MemoryManager::Load( const BYTE* cartridgeMemory, long endPos )
+	void MemoryManager::Load( const BYTE* cartridgeMemory, const long& endPos )
 	{
 		m_OneMegCartridge = ( endPos > HALF_MEGA_BYTE ) ? true : false ;
 		memcpy( &m_InternalMemory[0x0], &cartridgeMemory[0x0], FORTYEIGHT_KB ) ;
 
 		m_InternalMemory[0xFFFE] = 0x01 ;
 		m_InternalMemory[0xFFFF] = 0x02 ;
+	}
+
+	void MemoryManager::DoMemPageCM( const WORD& address, const BYTE& data )
+	{
+		BYTE page;
+
+		page = Engine::Instance().UtilManager().BitReset( data, 7 );
+		page = Engine::Instance().UtilManager().BitReset( page, 6 );
+		page = Engine::Instance().UtilManager().BitReset( page, 5 );
+
+		DoMemPageCMImpl( address, page );
+	}
+	void MemoryManager::DoMemPageCMImpl( const WORD& address, const BYTE& page )
+	{
+		switch(address)
+		{
+		case 0x0:
+			m_FirstBankPage = page ; 
+			break ;
+
+		case 0x4000: 
+			m_SecondBankPage = page ; 
+			break ;
+
+		case 0x8000: 
+			m_ThirdBankPage = page ; 
+			break ;
+		}
 	}
 }
