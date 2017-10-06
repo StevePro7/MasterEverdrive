@@ -15,10 +15,13 @@ namespace Everdrive
 	{
 		const BYTE page = Engine::Instance().UtilManager().BitResetPages( data );
 		bool isCodeMasters = Engine::Instance().GameManager().IsCodeMasters();
+		bool testC1 = Engine::Instance().UtilManager().TestBit( data, 3 );
+		bool testC2 = Engine::Instance().UtilManager().TestBit( data, 2 );
+		bool testF1 = Engine::Instance().UtilManager().TestBit( m_InternalMemory[0xFFFC], 3 );
 
-		WriteMemoryImpl( address, data, page, isCodeMasters, m_CurrentRam );
+		WriteMemoryImpl( address, data, page, isCodeMasters, m_CurrentRam, m_OneMegCartridge, testC1, testC2, testF1 );
 	}
-	void MemoryManager::WriteMemoryImpl( const WORD& address, const BYTE& data, const BYTE& page, const bool isCodeMasters, int currentRam )
+	void MemoryManager::WriteMemoryImpl( const WORD& address, const BYTE& data, const BYTE& page, const bool isCodeMasters, int currentRam, bool oneMegCartridge, bool testC1, bool testC2, bool testF1 )
 	{
 		if( isCodeMasters )
 		{
@@ -48,6 +51,29 @@ namespace Everdrive
  				// this is rom so lets return
  				return ;
  			}
+		}
+
+		m_InternalMemory[address] = data ;
+
+		if ( address >= 0xFFFC )
+		{
+			if ( !isCodeMasters )
+			{
+				DoMemPageImpl( address, data, oneMegCartridge, testC1, testC2, testF1 );
+			}
+		}
+
+		//	if you uncomment the following crap, you need to find out what happens to the rom/ram banking with mirroring
+		// for example if address == 0xDFFF then mirroring with overwrite 0xFFFF which is a ram bank. Should I allow this?
+		if ( address >= 0xC000 && address < 0xDFFC )
+		{
+			WORD mirrorAddress = address + 0x2000;			// add 8KB
+			m_InternalMemory[ mirrorAddress ] = data ;
+		}
+		if ( address >= 0xE000 )
+		{
+			WORD mirrorAddress = address - 0x2000;			// subtract 8KB
+			m_InternalMemory[ mirrorAddress ] = data ;
 		}
 	}
 
