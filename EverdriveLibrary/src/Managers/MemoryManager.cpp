@@ -16,9 +16,9 @@ namespace Everdrive
 		const BYTE page = Engine::Instance().UtilManager().BitResetPages( data );
 		bool isCodeMasters = Engine::Instance().GameManager().IsCodeMasters();
 
-		WriteMemoryImpl( address, data, page, isCodeMasters );
+		WriteMemoryImpl( address, data, page, isCodeMasters, m_CurrentRam );
 	}
-	void MemoryManager::WriteMemoryImpl( const WORD& address, const BYTE& data, const BYTE& page, const bool isCodeMasters )
+	void MemoryManager::WriteMemoryImpl( const WORD& address, const BYTE& data, const BYTE& page, const bool isCodeMasters, int currentRam )
 	{
 		if( isCodeMasters )
 		{
@@ -26,27 +26,6 @@ namespace Everdrive
 			{
 				DoMemPageCMImpl( address, page );
 			}
-			/*else if( address == 0x4000 )
-			{
-				DoMemPageCMImpl( address, page );
-			}
-			else if( address == 0x8000 )
-			{
-				DoMemPageCMImpl( address, page );
-			}*/
-
-			/*if( address == 0x0000 )
-			{
-				DoMemPageCMImpl( address, page );
-			}
-			else if( address == 0x4000 )
-			{
-				DoMemPageCMImpl( address, page );
-			}
-			else if( address == 0x8000 )
-			{
-				DoMemPageCMImpl( address, page );
-			}*/
 		}
 
 		// cant write to rom
@@ -54,6 +33,22 @@ namespace Everdrive
  		{
  			return ;
  		}
+
+		// only allow writing to here if a ram bank is mapped into this slot
+ 		else if ( address < 0xC000 )
+ 		{
+			if ( currentRam > -1 )
+ 			{
+				WORD mirrorAddress = address - 0x8000;			// subtract 32KB
+				m_RamBank[ currentRam ][ mirrorAddress ] = data ;
+ 				return ;
+ 			}
+ 			else
+ 			{
+ 				// this is rom so lets return
+ 				return ;
+ 			}
+		}
 	}
 
 	BYTE MemoryManager::ReadIOMemory( const WORD& address )

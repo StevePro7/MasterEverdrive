@@ -12,17 +12,37 @@ protected:
 
 TEST_F( MemoryManagerTests, WriteMemory )
 {
+	BYTE data, page;
+	int currentRam = -1;
+
 	// Address = 0x0000		 0KB	Page #01.
-	memoryManager.WriteMemoryImpl( 0x0000, 0x00, 0x00, true );
+	data = 0x00, page = 0x00;
+	memoryManager.WriteMemoryImpl( 0x0000, 0x00, 0x00, true, currentRam );
 	ASSERT_EQ( 0x00, memoryManager.GetFirstBankPage() );
 
 	// Address = 0x4000		16KB	Page #02.
-	memoryManager.WriteMemoryImpl( 0x4000, 0x01, 0x01, true );
+	data = 0x01, page = 0x01;
+	memoryManager.WriteMemoryImpl( 0x4000, 0x01, 0x01, true, currentRam );
 	ASSERT_EQ( 0x01, memoryManager.GetSecondBankPage() );
 
 	// Address = 0x8000		32KB	Page #03.
-	memoryManager.WriteMemoryImpl( 0x8000, 0x02, 0x02, true );
+	data = 0x02, page = 0x02;
+	memoryManager.WriteMemoryImpl( 0x8000, 0x02, 0x02, true, currentRam );
 	ASSERT_EQ( 0x02, memoryManager.GetThirdBankPage() );
+
+	// Address > 0x8000 && < 0xC000 Slot 02	48KB.	RAM takes precedence!
+	currentRam = 0;
+	memoryManager.WriteMemoryImpl( 0x9000, 0x0A, 0x0A, false, currentRam );
+	ASSERT_EQ( 0x0A, memoryManager.GetRamBank( 0 )[ 0x1000 ] );
+
+	// Address > 0x8000 && < 0xC000 Slot 02	48KB.	RAM takes precedence!
+	currentRam = 1;
+	memoryManager.WriteMemoryImpl( 0x9001, 0x0B, 0x0B, false, currentRam );
+	ASSERT_EQ( 0x0B, memoryManager.GetRamBank( 1 )[ 0x1001 ] );
+
+	// Address > 0x8000 && < 0xC000 Slot 02	48KB.	ROM do nothing!
+	currentRam = -1;
+	memoryManager.WriteMemoryImpl( 0x9001, 0x0C, 0x0C, false, currentRam );
 }
 
 TEST_F( MemoryManagerTests, Init )
