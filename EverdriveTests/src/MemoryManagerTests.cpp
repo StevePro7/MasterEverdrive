@@ -12,20 +12,33 @@ protected:
 
 TEST_F( MemoryManagerTests, ReadMemoryImpl )
 {
-	bool isCodeMasters;
+	BYTE data;
+
+	// Setup general variables.
+	const bool isCodeMasters = false;
 
 	BYTE* cartridgeMemory = new BYTE[ONE_MEGA_BYTE];
 	BYTE* internalMemory = new BYTE[SIXTY_FOUR_KB];
 	BYTE ramBankByte = 0xFF;
 	BYTE firstBankPage = 0, secondBankPage = 1, thirdBankPage = 2;
-
 	memset( cartridgeMemory, 0, ONE_MEGA_BYTE );
 	memset( internalMemory, 0, SIXTY_FOUR_KB );
 
-	isCodeMasters = true;
-	cartridgeMemory[0x1AED4] = 0xFD;
-	
-	BYTE data = memoryManager.ReadMemoryImpl( 0x2ED4, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	// the fixed memory address
+	internalMemory[0x0000] = 0xF3;
+	data = memoryManager.ReadMemoryImpl( 0x0000, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	ASSERT_EQ( 0xF3, data );
+
+	// bank 0
+	//cartridgeMemory[0x1AED4] = 0xFD;
+	//data = memoryManager.ReadMemoryImpl( 0x0000, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	//ASSERT_EQ( 0xF3, data );
+
+	// catch all
+	internalMemory[0xDFFF] = 0x02;
+	data = memoryManager.ReadMemoryImpl( 0xFFFF, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	ASSERT_EQ( 0x02, data );
+
 
 	delete internalMemory;
 	delete cartridgeMemory;
