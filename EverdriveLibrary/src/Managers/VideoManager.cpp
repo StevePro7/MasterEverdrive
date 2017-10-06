@@ -7,9 +7,13 @@ namespace Everdrive
 {
 	void VideoManager::Init()
 	{
-		m_Width = WINDOWWIDTH*SCREENSCALE;
-		m_Height = WINDOWHEIGHT*SCREENSCALE;
+		m_Width = WINDOWWIDTH * SCREENSCALE;
+		m_Height = WINDOWHEIGHT * SCREENSCALE;
+		m_UseGFXOpt = false;
+	}
 
+	void VideoManager::Load()
+	{
 		if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
 		{
 			return;

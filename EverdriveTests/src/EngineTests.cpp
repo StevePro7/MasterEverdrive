@@ -3,7 +3,7 @@
 
 using namespace Everdrive;
 
-//TEST(EngineTests, LogManagerWrite)
+//TEST( EngineTests, LogManagerWrite )
 //{
 //	Engine::Instance().LogManager().Init();
 //	Engine::Instance().LogManager().Write("engine test");

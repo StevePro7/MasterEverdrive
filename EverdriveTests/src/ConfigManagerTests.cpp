@@ -13,7 +13,7 @@ protected:
 	ConfigManager configManager;
 };
 
-//TEST_F(ConfigManagerTests, Load)
+//TEST_F( ConfigManagerTests, Load )
 //{
 //	configManager.Load();
 //	string romFile = configManager.GetRomFile();

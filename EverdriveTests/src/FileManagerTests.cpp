@@ -11,7 +11,7 @@ protected:
 	FileManager fileManager;
 };
 
-//TEST_F(FileManagerTests, InsertCartridge)
+//TEST_F( FileManagerTests, InsertCartridge )
 //{
 //	BYTE cartridgeMemory[SIXTY_FOUR_KB];
 //	memset(cartridgeMemory, 0, sizeof(cartridgeMemory));
@@ -20,7 +20,7 @@ protected:
 //	ASSERT_EQ(0x31, cartridgeMemory[0]);
 //}
 
-//TEST_F(FileManagerTests, InsertCartridge)
+//TEST_F( FileManagerTests, InsertCartridge )
 //{
 //	const char* path = "rom/MonacoGP.sms";
 //	RomCartridge* cartridge = new RomCartridge;
@@ -29,7 +29,7 @@ protected:
 //	ASSERT_EQ(1, 1);
 //}
 
-TEST_F(FileManagerTests, InsertCartridge)
+TEST_F( FileManagerTests, InsertCartridge )
 {
 	const char* path = "rom/MonacoGP.sms";
 	BYTE* cartridgeMemory = new BYTE[ONE_MEGA_BYTE];

@@ -12,6 +12,8 @@ namespace Everdrive
 		memoryManager.Init();
 		videoManager.Init();
 
+		videoManager.Load();
+
 		/*const char* path = "rom/MonacoGP.sms";
 		RomCartridge* cartridge = new RomCartridge;
 		memset(cartridge->m_CartridgeMemory, 0, ONE_MEGA_BYTE);
