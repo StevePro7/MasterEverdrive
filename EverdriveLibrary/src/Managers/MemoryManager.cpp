@@ -48,6 +48,10 @@ namespace Everdrive
 		m_InternalMemory[0xFFFF] = 2 ; // official Sega doc
 		m_InternalMemory[0xFFFE] = 1 ; // official Sega doc
 
+		m_FirstBankPage = 0 ;
+		m_SecondBankPage = 1 ;
+		m_ThirdBankPage = 2 ;
+
 		m_FuncPtrRead = &ReadByte ;
 		m_FuncPtrWrite = &WriteByte ;
 		m_FuncPtrIORead = &ReadIOByte ;

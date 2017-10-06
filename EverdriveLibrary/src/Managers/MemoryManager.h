@@ -35,10 +35,18 @@ namespace Everdrive
 		BYTE* GetRamBank( BYTE bank ) { return m_RamBank[ bank ]; }
 		BYTE GetRamBank( BYTE bank, WORD address ) { return m_RamBank[bank][address]; }
 
+		BYTE GetFirstBankPage() { return m_FirstBankPage; }
+		BYTE GetSecondBankPage() { return m_SecondBankPage; }
+		BYTE GetThirdBankPage() { return m_ThirdBankPage; }
+
 	private:
 		BYTE m_CartridgeMemory[ONE_MEGA_BYTE];
 		BYTE m_InternalMemory[SIXTY_FOUR_KB] ;
 		BYTE m_RamBank[0x2][SIXTEEN_KBYTE] ;
+
+		BYTE m_FirstBankPage ;
+		BYTE m_SecondBankPage ;
+		BYTE m_ThirdBankPage ;
 
 		Z80ReadMemory		m_FuncPtrRead ;
 		Z80WriteMemory		m_FuncPtrWrite ;

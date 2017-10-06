@@ -25,4 +25,8 @@ TEST_F( MemoryManagerTests, Init )
 	ASSERT_EQ( 1, internalMemory[0xFFFE] );
 	ASSERT_EQ( 0, ramBank0[0] );
 	ASSERT_EQ( 0, data );
+
+	ASSERT_EQ( 0, memoryManager.GetFirstBankPage() );
+	ASSERT_EQ( 1, memoryManager.GetSecondBankPage() );
+	ASSERT_EQ( 2, memoryManager.GetThirdBankPage() );
 }
