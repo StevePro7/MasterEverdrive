@@ -73,6 +73,73 @@ namespace Everdrive
 		m_InternalMemory[0xFFFF] = 0x02 ;
 	}
 
+	void MemoryManager::DoMemPage( const WORD& address, const BYTE& data )
+	{
+		bool testC1 = Engine::Instance().UtilManager().TestBit( data, 3 );
+		bool testC2 = Engine::Instance().UtilManager().TestBit( data, 2 );
+		bool testF1 = Engine::Instance().UtilManager().TestBit( m_InternalMemory[0xFFFC], 3 );
+
+		DoMemPageImpl( address, data, m_OneMegCartridge, testC1, testC2, testF1 );
+	}
+
+	void MemoryManager::DoMemPageImpl( const WORD& address, const BYTE& data, const bool oneMegCartridge, bool testC1, bool testC2, bool testF1 )
+	{
+		if( address < 0xFFFC )
+		{
+			return;
+		}
+
+		BYTE page = oneMegCartridge ? data & 0x3F : data & 0x1F ;
+
+		// Update RAM mirror 
+		WORD mirrorAddress = address - 0x2000;			// 8KB
+		m_InternalMemory[ mirrorAddress ] = data;
+
+		// Process address.
+		switch( address )
+		{
+		case 0xFFFC: 
+			{
+				// check for slot 2 ram banking
+				// if( TestBit( data, 3 ) )
+				if( testC1 )
+				{
+					// which of the two ram banks are we swapping in?
+					// if( TestBit( data, 2 ) )
+					if ( testC2 )
+						m_CurrentRam = 1 ;
+					else
+						m_CurrentRam = 0 ;
+				}
+				else
+				{
+					m_CurrentRam = -1;
+				}
+				
+			}
+			break ;
+
+		case 0xFFFD: 
+			m_FirstBankPage = page ; 
+			break ;
+
+		case 0xFFFE:
+			m_SecondBankPage = page ; 
+			break ;
+
+		case 0xFFFF:
+			{
+				// only allow rom banking in slot 2 if ram is not mapped there!
+				// if( !TestBit( context->m_InternalMemory[0xFFFC], 3 ) )
+				if( !testF1 )
+				{
+					m_ThirdBankPage = page;
+				}
+				break ;
+			}
+		}
+	}
+
 	void MemoryManager::DoMemPageCM( const WORD& address, const BYTE& data )
 	{
 		BYTE page;

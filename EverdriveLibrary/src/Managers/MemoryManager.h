@@ -30,6 +30,9 @@ namespace Everdrive
 		void Init();
 		void Load( const BYTE* cartridgeMemory, const long& endPos );
 
+		void DoMemPage( const WORD& address, const BYTE& data );
+		void DoMemPageImpl( const WORD& address, const BYTE& data, const bool oneMegCartridge, bool testC1, bool testC2, bool testF1 );
+
 		void DoMemPageCM( const WORD& address, const BYTE& data );
 		void DoMemPageCMImpl( const WORD& address, const BYTE& page );
 
