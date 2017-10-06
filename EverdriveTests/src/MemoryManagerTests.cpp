@@ -10,7 +10,22 @@ protected:
 	MemoryManager memoryManager;
 };
 
-TEST_F( MemoryManagerTests, WriteMemory )
+TEST_F( MemoryManagerTests, ReadMemoryImpl )
+{
+	BYTE* cartridgeMemory = new BYTE[ONE_MEGA_BYTE];
+	BYTE* internalMemory = new BYTE[SIXTY_FOUR_KB];
+	memset( cartridgeMemory, 0, ONE_MEGA_BYTE );
+	memset( internalMemory, 0, SIXTY_FOUR_KB );
+
+	cartridgeMemory[0x1AED4] = 0xFD;
+	
+	BYTE data = memoryManager.ReadMemoryImpl( 0x2ED4 );
+
+	delete internalMemory;
+	delete cartridgeMemory;
+}
+
+TEST_F( MemoryManagerTests, WriteMemoryImpl )
 {
 	BYTE data, page;
 

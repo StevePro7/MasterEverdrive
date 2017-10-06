@@ -10,6 +10,10 @@ namespace Everdrive
 	{
 		return 0x0;
 	}
+	BYTE MemoryManager::ReadMemoryImpl( const WORD& address )
+	{
+		return 0x0;
+	}
 
 	void MemoryManager::WriteMemory( const WORD& address, const BYTE& data )
 	{
