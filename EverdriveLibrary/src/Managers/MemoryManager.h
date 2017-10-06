@@ -24,6 +24,7 @@ namespace Everdrive
 		~MemoryManager()    {}
 
 		void Init();
+		void Load( const BYTE* cartridgeMemory, long endPos );
 
 		BYTE ReadMemory( const WORD& address );
 		void WriteMemory( const WORD& address, const BYTE& data );

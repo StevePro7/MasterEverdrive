@@ -26,7 +26,7 @@ namespace Everdrive
 				fread( header, 1, 512,in ) ;
 			else
 			{
-				fread ( header, 1,6 4, in ) ;
+				fread ( header, 1, 64, in ) ;
 			}
 		}
 

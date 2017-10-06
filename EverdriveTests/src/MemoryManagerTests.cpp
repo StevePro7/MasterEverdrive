@@ -33,3 +33,26 @@ TEST_F( MemoryManagerTests, Init )
 	ASSERT_EQ( -1, memoryManager.GetCurrentRam() );
 	ASSERT_EQ( false, memoryManager.OneMegCartridge() );
 }
+
+TEST_F( MemoryManagerTests, Load )
+{
+	// Arrange.
+	const BYTE data = 0x04;
+
+	BYTE* cartridgeMemory = new BYTE[ONE_MEGA_BYTE];
+	memset( cartridgeMemory, data, ONE_MEGA_BYTE );
+	long endPos = 0;
+
+	// Act.
+	memoryManager.Load( cartridgeMemory, endPos );
+	delete cartridgeMemory;
+
+	// Assert.
+	ASSERT_EQ( false, memoryManager.OneMegCartridge() );
+
+	BYTE* internalMemory = memoryManager.GetInternalMemory();
+	ASSERT_EQ( data, internalMemory[0x0000] );
+	ASSERT_EQ( data, internalMemory[0xBFFF] );
+	ASSERT_EQ( 2, internalMemory[0xFFFF] );
+	ASSERT_EQ( 1, internalMemory[0xFFFE] );
+}

@@ -24,5 +24,5 @@ TEST_F( FileManagerTests, InsertCartridge )
 	delete cartridgeMemory;
 
 	// Assert.
-	ASSERT_EQ( 2, endPos );
+	ASSERT_EQ( 0, endPos );
 }

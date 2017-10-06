@@ -1,6 +1,8 @@
 #include "MemoryManager.h"
 #include <memory.h>
 
+#define HALF_MEGA_BYTE	 0x80000			//   524,288	512KB
+
 namespace Everdrive
 {
 	BYTE MemoryManager::ReadMemory( const WORD& address )
@@ -59,5 +61,14 @@ namespace Everdrive
 		m_FuncPtrWrite = &WriteByte ;
 		m_FuncPtrIORead = &ReadIOByte ;
 		m_FuncPtrIOWrite = &WriteIOByte ;
+	}
+
+	void MemoryManager::Load( const BYTE* cartridgeMemory, long endPos )
+	{
+		m_OneMegCartridge = ( endPos > HALF_MEGA_BYTE ) ? true : false ;
+		memcpy( &m_InternalMemory[0x0], &cartridgeMemory[0x0], FORTYEIGHT_KB ) ;
+
+		m_InternalMemory[0xFFFE] = 0x01 ;
+		m_InternalMemory[0xFFFF] = 0x02 ;
 	}
 }
