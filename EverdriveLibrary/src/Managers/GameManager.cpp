@@ -9,6 +9,6 @@ namespace Everdrive
 		m_FPS = 60;
 		m_IsPAL = true;
 		m_IsCodeMasters = false;
-		m_OneMegCartridge = false ;
+		//m_OneMegCartridge = false ;
 	}
 }

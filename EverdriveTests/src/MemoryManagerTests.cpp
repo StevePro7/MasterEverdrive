@@ -29,4 +29,7 @@ TEST_F( MemoryManagerTests, Init )
 	ASSERT_EQ( 0, memoryManager.GetFirstBankPage() );
 	ASSERT_EQ( 1, memoryManager.GetSecondBankPage() );
 	ASSERT_EQ( 2, memoryManager.GetThirdBankPage() );
+
+	ASSERT_EQ( -1, memoryManager.GetCurrentRam() );
+	ASSERT_EQ( false, memoryManager.OneMegCartridge() );
 }

@@ -52,6 +52,9 @@ namespace Everdrive
 		m_SecondBankPage = 1 ;
 		m_ThirdBankPage = 2 ;
 
+		m_CurrentRam = -1 ;
+		m_OneMegCartridge = false ;
+
 		m_FuncPtrRead = &ReadByte ;
 		m_FuncPtrWrite = &WriteByte ;
 		m_FuncPtrIORead = &ReadIOByte ;

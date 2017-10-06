@@ -19,5 +19,5 @@ TEST_F( GameManagerTests, Init )
 	ASSERT_EQ( 60, gameManager.GetFPS() );
 	ASSERT_EQ( true, gameManager.IsPAL() );
 	ASSERT_EQ( false, gameManager.IsCodeMasters() );
-	ASSERT_EQ( false, gameManager.OneMegCartridge() );
+	//ASSERT_EQ( false, gameManager.OneMegCartridge() );
 }

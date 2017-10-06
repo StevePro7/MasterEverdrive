@@ -39,6 +39,9 @@ namespace Everdrive
 		BYTE GetSecondBankPage() { return m_SecondBankPage; }
 		BYTE GetThirdBankPage() { return m_ThirdBankPage; }
 
+		int GetCurrentRam() const { return m_CurrentRam; }
+		bool OneMegCartridge() const { return m_OneMegCartridge; }
+
 	private:
 		BYTE m_CartridgeMemory[ONE_MEGA_BYTE];
 		BYTE m_InternalMemory[SIXTY_FOUR_KB] ;
@@ -47,6 +50,9 @@ namespace Everdrive
 		BYTE m_FirstBankPage ;
 		BYTE m_SecondBankPage ;
 		BYTE m_ThirdBankPage ;
+
+		int m_CurrentRam ;
+		bool m_OneMegCartridge ;
 
 		Z80ReadMemory		m_FuncPtrRead ;
 		Z80WriteMemory		m_FuncPtrWrite ;

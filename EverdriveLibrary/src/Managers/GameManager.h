@@ -16,7 +16,7 @@ namespace Everdrive
 		int GetFPS() const { return m_FPS; }
 		bool IsPAL() const { return m_IsPAL; }
 		bool IsCodeMasters() const { return m_IsCodeMasters; }
-		bool OneMegCartridge() const { return m_OneMegCartridge; }
+		//bool OneMegCartridge() const { return m_OneMegCartridge; }
 
 	private:
 		unsigned long int m_CyclesThisUpdate ;
@@ -24,7 +24,7 @@ namespace Everdrive
 		int m_FPS ;
 		bool m_IsPAL ;
 		bool m_IsCodeMasters ;
-		bool m_OneMegCartridge ;	
+		//bool m_OneMegCartridge ;
 	};
 }
 
