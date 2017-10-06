@@ -13,10 +13,34 @@ namespace Everdrive
 
 	void MemoryManager::WriteMemory( const WORD& address, const BYTE& data )
 	{
-		//WriteMemory
+		const BYTE page = Engine::Instance().UtilManager().BitResetPages( data );
+		bool isCodeMasters = Engine::Instance().GameManager().IsCodeMasters();
+
+		WriteMemoryImpl( address, data, page, isCodeMasters );
 	}
-	void MemoryManager::WriteMemoryImpl( const WORD& address, const BYTE& data, const bool isCodeMasters )
+	void MemoryManager::WriteMemoryImpl( const WORD& address, const BYTE& data, const BYTE& page, const bool isCodeMasters )
 	{
+		if( isCodeMasters )
+		{
+			if( address == 0x0000 )
+			{
+				DoMemPageCMImpl( address, page );
+			}
+			else if( address == 0x4000 )
+			{
+				DoMemPageCMImpl( address, page );
+			}
+			else if( address == 0x8000 )
+			{
+				DoMemPageCMImpl( address, page );
+			}
+		}
+
+		// cant write to rom
+ 		if ( address < 0x8000 )
+ 		{
+ 			return ;
+ 		}
 	}
 
 	BYTE MemoryManager::ReadIOMemory( const WORD& address )

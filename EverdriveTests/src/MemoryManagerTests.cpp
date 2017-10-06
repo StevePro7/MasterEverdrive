@@ -12,7 +12,17 @@ protected:
 
 TEST_F( MemoryManagerTests, WriteMemory )
 {
-	memoryManager.WriteMemory( 0x0000, 0x00 );
+	// Address = 0x0000		 0KB	Page #01.
+	memoryManager.WriteMemoryImpl( 0x0000, 0x00, 0x00, true );
+	ASSERT_EQ( 0x00, memoryManager.GetFirstBankPage() );
+
+	// Address = 0x4000		16KB	Page #02.
+	memoryManager.WriteMemoryImpl( 0x4000, 0x01, 0x01, true );
+	ASSERT_EQ( 0x01, memoryManager.GetSecondBankPage() );
+
+	// Address = 0x8000		32KB	Page #03.
+	memoryManager.WriteMemoryImpl( 0x8000, 0x02, 0x02, true );
+	ASSERT_EQ( 0x02, memoryManager.GetThirdBankPage() );
 }
 
 TEST_F( MemoryManagerTests, Init )
