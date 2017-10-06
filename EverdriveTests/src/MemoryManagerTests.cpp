@@ -58,11 +58,13 @@ TEST_F( MemoryManagerTests, WriteMemory )
 	// Address >=0xFFFC				Slot 04		> 48KB
 	testC1 = false;
 	memoryManager.WriteMemoryImpl( 0xFFFC, 0x80, 0x00, false, currentRam, oneMegCartridge, testC1, testC2, testF1 );
-	
 	ASSERT_EQ( 0x80, memoryManager.GetInternalMemory()[0xDFFC] );
 	ASSERT_EQ( 0x80, memoryManager.GetInternalMemory()[0xFFFC] );
 	ASSERT_EQ( -1, memoryManager.GetCurrentRam() );
-}
+
+	// See DoMemPageImpl for more detailed tests here where
+	// WriteMemory >= 0xFFFC && <= 0xFFFF when !codeMasters
+ }
 
 TEST_F( MemoryManagerTests, Init )
 {

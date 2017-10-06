@@ -15,6 +15,7 @@ namespace Everdrive
 	{
 		const BYTE page = Engine::Instance().UtilManager().BitResetPages( data );
 		bool isCodeMasters = Engine::Instance().GameManager().IsCodeMasters();
+
 		bool testC1 = Engine::Instance().UtilManager().TestBit( data, 3 );
 		bool testC2 = Engine::Instance().UtilManager().TestBit( data, 2 );
 		bool testF1 = Engine::Instance().UtilManager().TestBit( m_InternalMemory[0xFFFC], 3 );
@@ -54,7 +55,6 @@ namespace Everdrive
 		}
 
 		m_InternalMemory[address] = data ;
-
 		if ( address >= 0xFFFC )
 		{
 			if ( !isCodeMasters )
@@ -63,7 +63,7 @@ namespace Everdrive
 			}
 		}
 
-		//	if you uncomment the following crap, you need to find out what happens to the rom/ram banking with mirroring
+		// if you uncomment the following crap, you need to find out what happens to the rom/ram banking with mirroring
 		// for example if address == 0xDFFF then mirroring with overwrite 0xFFFF which is a ram bank. Should I allow this?
 		if ( address >= 0xC000 && address < 0xDFFC )
 		{
