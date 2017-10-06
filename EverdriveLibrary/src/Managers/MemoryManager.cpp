@@ -22,7 +22,20 @@ namespace Everdrive
 	{
 		if( isCodeMasters )
 		{
-			if( address == 0x0000 )
+			if( address == 0x0000 || address == 0x4000 || address == 0x8000 )
+			{
+				DoMemPageCMImpl( address, page );
+			}
+			/*else if( address == 0x4000 )
+			{
+				DoMemPageCMImpl( address, page );
+			}
+			else if( address == 0x8000 )
+			{
+				DoMemPageCMImpl( address, page );
+			}*/
+
+			/*if( address == 0x0000 )
 			{
 				DoMemPageCMImpl( address, page );
 			}
@@ -33,7 +46,7 @@ namespace Everdrive
 			else if( address == 0x8000 )
 			{
 				DoMemPageCMImpl( address, page );
-			}
+			}*/
 		}
 
 		// cant write to rom
