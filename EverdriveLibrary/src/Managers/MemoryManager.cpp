@@ -8,9 +8,13 @@ namespace Everdrive
 {
 	BYTE MemoryManager::ReadMemory( const WORD& address )
 	{
-		return 0x0;
+		bool isCodeMasters = Engine::Instance().GameManager().IsCodeMasters();
+
+		WORD ramBankAddr = address - 0x8000;		// 32KB
+		BYTE ramBankByte = m_RamBank[ m_CurrentRam ][ ramBankAddr ];
+		return ReadMemoryImpl( address, isCodeMasters, m_CartridgeMemory, m_InternalMemory, ramBankByte, m_FirstBankPage, m_SecondBankPage, m_ThirdBankPage );
 	}
-	BYTE MemoryManager::ReadMemoryImpl( const WORD& address )
+	BYTE MemoryManager::ReadMemoryImpl( const WORD& address, const bool isCodeMasters, const BYTE* cartridgeMemory, const BYTE* internalMemory, const BYTE& ramBankByte, BYTE firstBankPage, BYTE secondBankPage, BYTE thirdBankPage )
 	{
 		return 0x0;
 	}

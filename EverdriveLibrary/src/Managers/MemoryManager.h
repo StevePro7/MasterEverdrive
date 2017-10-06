@@ -23,11 +23,10 @@ namespace Everdrive
 		~MemoryManager()    {}
 
 		BYTE ReadMemory( const WORD& address );
-		BYTE ReadMemoryImpl( const WORD& address );
+		BYTE ReadMemoryImpl( const WORD& address, const bool isCodeMasters, const BYTE* cartridgeMemory, const BYTE* internalMemory, const BYTE& ramBankByte, BYTE firstBankPage, BYTE secondBankPage, BYTE thirdBankPage );
 
 		void WriteMemory( const WORD& address, const BYTE& data );
 		void WriteMemoryImpl( const WORD& address, const BYTE& data, const BYTE& page, const bool isCodeMasters, int currentRam, bool oneMegCartridge, bool testC1, bool testC2, bool testF1 );
-
 		BYTE ReadIOMemory( const WORD& address );
 		void WriteIOMemory( const WORD& address, const BYTE& data );
 

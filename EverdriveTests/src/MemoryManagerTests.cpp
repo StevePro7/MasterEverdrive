@@ -12,14 +12,20 @@ protected:
 
 TEST_F( MemoryManagerTests, ReadMemoryImpl )
 {
+	bool isCodeMasters;
+
 	BYTE* cartridgeMemory = new BYTE[ONE_MEGA_BYTE];
 	BYTE* internalMemory = new BYTE[SIXTY_FOUR_KB];
+	BYTE ramBankByte = 0xFF;
+	BYTE firstBankPage = 0, secondBankPage = 1, thirdBankPage = 2;
+
 	memset( cartridgeMemory, 0, ONE_MEGA_BYTE );
 	memset( internalMemory, 0, SIXTY_FOUR_KB );
 
+	isCodeMasters = true;
 	cartridgeMemory[0x1AED4] = 0xFD;
 	
-	BYTE data = memoryManager.ReadMemoryImpl( 0x2ED4 );
+	BYTE data = memoryManager.ReadMemoryImpl( 0x2ED4, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
 
 	delete internalMemory;
 	delete cartridgeMemory;
@@ -30,49 +36,52 @@ TEST_F( MemoryManagerTests, WriteMemoryImpl )
 	BYTE data, page;
 
 	int currentRam = -1;
+	bool isCodeMasters;
 	const bool oneMegCartridge = false;
 	bool testC1 = false, testC2 = false, testF1 = false;
 
 	// Address = 0x0000		 0KB	Page #01.
 	data = 0x00, page = 0x00;
-	memoryManager.WriteMemoryImpl( 0x0000, 0x00, 0x00, true, currentRam, oneMegCartridge, testC1, testC2, testF1 );
+	isCodeMasters = true;
+	memoryManager.WriteMemoryImpl( 0x0000, 0x00, 0x00, isCodeMasters, currentRam, oneMegCartridge, testC1, testC2, testF1 );
 	ASSERT_EQ( 0x00, memoryManager.GetFirstBankPage() );
 
 	// Address = 0x4000		16KB	Page #02.
 	data = 0x01, page = 0x01;
-	memoryManager.WriteMemoryImpl( 0x4000, 0x01, 0x01, true, currentRam, oneMegCartridge, testC1, testC2, testF1 );
+	memoryManager.WriteMemoryImpl( 0x4000, 0x01, 0x01, isCodeMasters, currentRam, oneMegCartridge, testC1, testC2, testF1 );
 	ASSERT_EQ( 0x01, memoryManager.GetSecondBankPage() );
 
 	// Address = 0x8000		32KB	Page #03.
 	data = 0x02, page = 0x02;
-	memoryManager.WriteMemoryImpl( 0x8000, 0x02, 0x02, true, currentRam, oneMegCartridge, testC1, testC2, testF1 );
+	memoryManager.WriteMemoryImpl( 0x8000, 0x02, 0x02, isCodeMasters, currentRam, oneMegCartridge, testC1, testC2, testF1 );
 	ASSERT_EQ( 0x02, memoryManager.GetThirdBankPage() );
 
 
 	// Address > 0x8000 && < 0xC000 Slot 02	48KB.	RAM takes precedence!
 	currentRam = 0;
-	memoryManager.WriteMemoryImpl( 0x9000, 0x0A, 0x0A, false, currentRam, oneMegCartridge, testC1, testC2, testF1 );
+	isCodeMasters = false;
+	memoryManager.WriteMemoryImpl( 0x9000, 0x0A, 0x0A, isCodeMasters, currentRam, oneMegCartridge, testC1, testC2, testF1 );
 	ASSERT_EQ( 0x0A, memoryManager.GetRamBank( 0 )[ 0x1000 ] );
 
 	// Address >=0x8000 && < 0xC000 Slot 02	48KB.	RAM takes precedence!
 	currentRam = 1;
-	memoryManager.WriteMemoryImpl( 0x9001, 0x0B, 0x0B, false, currentRam, oneMegCartridge, testC1, testC2, testF1 );
+	memoryManager.WriteMemoryImpl( 0x9001, 0x0B, 0x0B, isCodeMasters, currentRam, oneMegCartridge, testC1, testC2, testF1 );
 	ASSERT_EQ( 0x0B, memoryManager.GetRamBank( 1 )[ 0x1001 ] );
 
 	// Address > 0x8000 && < 0xC000 Slot 02	48KB.	ROM do nothing!
 	currentRam = -1;
-	memoryManager.WriteMemoryImpl( 0x9001, 0x0C, 0x0C, false, currentRam, oneMegCartridge, testC1, testC2, testF1 );
+	memoryManager.WriteMemoryImpl( 0x9001, 0x0C, 0x0C, isCodeMasters, currentRam, oneMegCartridge, testC1, testC2, testF1 );
 
 
 	// Address >=0xC000 && < 0xFFFC Slot 04		> 48KB
-	memoryManager.WriteMemoryImpl( 0xC001, 0x00, 0x00, false, currentRam, oneMegCartridge, testC1, testC2, testF1 );
+	memoryManager.WriteMemoryImpl( 0xC001, 0x00, 0x00, isCodeMasters, currentRam, oneMegCartridge, testC1, testC2, testF1 );
 	ASSERT_EQ( 0x00, memoryManager.GetInternalMemory()[0xC001] );
 	ASSERT_EQ( 0x00, memoryManager.GetInternalMemory()[0xE001] );
 
 
 	// Address >=0xFFFC				Slot 04		> 48KB
 	testC1 = false;
-	memoryManager.WriteMemoryImpl( 0xFFFC, 0x80, 0x00, false, currentRam, oneMegCartridge, testC1, testC2, testF1 );
+	memoryManager.WriteMemoryImpl( 0xFFFC, 0x80, 0x00, isCodeMasters, currentRam, oneMegCartridge, testC1, testC2, testF1 );
 	ASSERT_EQ( 0x80, memoryManager.GetInternalMemory()[0xDFFC] );
 	ASSERT_EQ( 0x80, memoryManager.GetInternalMemory()[0xFFFC] );
 	ASSERT_EQ( -1, memoryManager.GetCurrentRam() );
