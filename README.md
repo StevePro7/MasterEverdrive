@@ -25,3 +25,8 @@ This removed all warnings.
 
 Copy gtestd.lib to deps/lib/gtest
 Rebuild and now no more linker errors!
+
+
+Sonic Chaos 1MB
+http://www.smspower.org/forums/14087-MakingAMasterSystemFlashEEPROMCartridge
+http://www.smspower.org/Development/Mappers
