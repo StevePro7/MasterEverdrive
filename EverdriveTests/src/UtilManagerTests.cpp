@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "Managers/UtilManager.h"
+#include "Defines.h"
 
 using namespace testing;
 using namespace Everdrive;
@@ -53,6 +54,12 @@ TEST_F( UtilManagerTests, BitReset )
 {
 	int data = utilManager.BitReset( 2, 1 );
 	ASSERT_EQ( 0, data );
+}
+// Bit reset pages
+TEST_F( UtilManagerTests, BitResetPages )
+{
+	ASSERT_EQ( 0x01, utilManager.BitResetPages( 0xE1 ) );
+	ASSERT_EQ( 0x11, utilManager.BitResetPages( 0x91 ) );
 }
 
 // Bit count

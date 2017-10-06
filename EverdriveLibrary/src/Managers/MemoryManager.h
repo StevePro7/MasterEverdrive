@@ -23,7 +23,10 @@ namespace Everdrive
 		~MemoryManager()    {}
 
 		BYTE ReadMemory( const WORD& address );
+
 		void WriteMemory( const WORD& address, const BYTE& data );
+		void WriteMemoryImpl( const WORD& address, const BYTE& data, const bool isCodeMasters );
+
 		BYTE ReadIOMemory( const WORD& address );
 		void WriteIOMemory( const WORD& address, const BYTE& data );
 

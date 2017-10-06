@@ -10,6 +10,11 @@ protected:
 	MemoryManager memoryManager;
 };
 
+TEST_F( MemoryManagerTests, WriteMemory )
+{
+	memoryManager.WriteMemory( 0x0000, 0x00 );
+}
+
 TEST_F( MemoryManagerTests, Init )
 {
 	memoryManager.Init();

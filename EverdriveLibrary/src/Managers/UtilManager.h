@@ -1,6 +1,8 @@
 #ifndef _UTIL_MANAGER_H_
 #define _UTIL_MANAGER_H_
 
+#include "Defines.h"
+
 namespace Everdrive
 {
 	class UtilManager
@@ -44,6 +46,14 @@ namespace Everdrive
 			data &= ~mask;
 
 			return data;
+		}
+		BYTE BitResetPages( BYTE data )
+		{
+			BYTE page;
+			page = BitReset( data, 7 );
+			page = BitReset( page, 6 );
+			page = BitReset( page, 5 );
+			return page;
 		}
 
 		template< typename T >

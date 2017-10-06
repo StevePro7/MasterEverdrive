@@ -13,6 +13,10 @@ namespace Everdrive
 
 	void MemoryManager::WriteMemory( const WORD& address, const BYTE& data )
 	{
+		//WriteMemory
+	}
+	void MemoryManager::WriteMemoryImpl( const WORD& address, const BYTE& data, const bool isCodeMasters )
+	{
 	}
 
 	BYTE MemoryManager::ReadIOMemory( const WORD& address )
@@ -142,12 +146,7 @@ namespace Everdrive
 
 	void MemoryManager::DoMemPageCM( const WORD& address, const BYTE& data )
 	{
-		BYTE page;
-
-		page = Engine::Instance().UtilManager().BitReset( data, 7 );
-		page = Engine::Instance().UtilManager().BitReset( page, 6 );
-		page = Engine::Instance().UtilManager().BitReset( page, 5 );
-
+		BYTE page = Engine::Instance().UtilManager().BitResetPages( data );
 		DoMemPageCMImpl( address, page );
 	}
 	void MemoryManager::DoMemPageCMImpl( const WORD& address, const BYTE& page )
