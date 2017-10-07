@@ -25,6 +25,7 @@ TEST_F( MemoryManagerTests, ReadMemoryImpl )
 	memset( cartridgeMemory, 0, ONE_MEGA_BYTE );
 	memset( internalMemory, 0, SIXTY_FOUR_KB );
 
+
 	// the fixed memory address
 	internalMemory[0x0000] = 0xF3;
 	data = memoryManager.ReadMemoryImpl( 0x0000, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage, currentRam  );
@@ -54,7 +55,6 @@ TEST_F( MemoryManagerTests, ReadMemoryImpl )
 	thirdBankPage = 6;
 	data = memoryManager.ReadMemoryImpl( 0xAED3, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage, currentRam  );
 	ASSERT_EQ( 0xF8, data );
-
 
 	// catch all
 	internalMemory[0xDFFF] = 0x07;
