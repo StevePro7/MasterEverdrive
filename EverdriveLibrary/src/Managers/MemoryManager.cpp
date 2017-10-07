@@ -20,7 +20,7 @@ namespace Everdrive
 
 		if ( addr >= 0xFFFC )
 		{
-			addr-=0x2000 ;
+			addr -= 0x2000 ;
 		}
 
 		// the fixed memory address
@@ -34,9 +34,15 @@ namespace Everdrive
 		else if( addr < 0x4000 )
 		{
 			unsigned int bankaddr = addr + ( 0x4000 * firstBankPage );
-			return internalMemory[bankaddr];
+			return cartridgeMemory[bankaddr];
 		}
 		// bank 1
+		else if( addr < 0x8000 )
+		{
+			unsigned int bankaddr = addr + ( 0x4000 * secondBankPage );
+			bankaddr -= 0x4000;
+			return cartridgeMemory[bankaddr];
+		}
 		// bank 2
 
 		return internalMemory[addr];

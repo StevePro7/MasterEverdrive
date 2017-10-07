@@ -30,10 +30,16 @@ TEST_F( MemoryManagerTests, ReadMemoryImpl )
 	ASSERT_EQ( 0xF3, data );
 
 	// bank 0
-	internalMemory[0x2AA4] = 0x21;
+	cartridgeMemory[0x2AA4] = 0x21;
 	firstBankPage = 0;
 	data = memoryManager.ReadMemoryImpl( 0x2AA4, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
 	ASSERT_EQ( 0x21, data );
+
+	// bank 1
+	cartridgeMemory[0x721F] = 0x58;
+	secondBankPage = 1;
+	data = memoryManager.ReadMemoryImpl( 0x721F, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	ASSERT_EQ( 0x58, data );
 
 	// catch all
 	internalMemory[0xDFFF] = 0x02;
