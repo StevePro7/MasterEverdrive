@@ -89,6 +89,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Chips\SN79489.h" />
+    <ClInclude Include="src\Chips\TMS9918A.h" />
     <ClInclude Include="src\Chips\Z80.h" />
     <ClInclude Include="src\Chips\Z80.Mnemonics.h" />
     <ClInclude Include="src\Constants.h" />
@@ -109,6 +111,8 @@
     <ClInclude Include="src\Objects\RomCartridge.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Chips\SN79489.cpp" />
+    <ClCompile Include="src\Chips\TMS9918A.cpp" />
     <ClCompile Include="src\Chips\Z80.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Managers\ConfigManager.cpp" />

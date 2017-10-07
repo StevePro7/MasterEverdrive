@@ -83,6 +83,12 @@
     <ClInclude Include="src\Managers\GameManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="src\Chips\TMS9918A.h">
+      <Filter>Header Files\Chips</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Chips\SN79489.h">
+      <Filter>Header Files\Chips</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine.cpp">
@@ -126,6 +132,12 @@
     </ClCompile>
     <ClCompile Include="src\Managers\GameManager.cpp">
       <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Chips\TMS9918A.cpp">
+      <Filter>Source Files\Chips</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Chips\SN79489.cpp">
+      <Filter>Source Files\Chips</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
