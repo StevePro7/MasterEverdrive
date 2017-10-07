@@ -21,30 +21,45 @@ TEST_F( MemoryManagerTests, ReadMemoryImpl )
 	BYTE* internalMemory = new BYTE[SIXTY_FOUR_KB];
 	BYTE ramBankByte = 0xFF;
 	BYTE firstBankPage = 0, secondBankPage = 1, thirdBankPage = 2;
+	int currentRam = -1;
 	memset( cartridgeMemory, 0, ONE_MEGA_BYTE );
 	memset( internalMemory, 0, SIXTY_FOUR_KB );
 
 	// the fixed memory address
 	internalMemory[0x0000] = 0xF3;
-	data = memoryManager.ReadMemoryImpl( 0x0000, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	data = memoryManager.ReadMemoryImpl( 0x0000, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage, currentRam  );
 	ASSERT_EQ( 0xF3, data );
 
 	// bank 0
 	cartridgeMemory[0x2AA4] = 0x21;
 	firstBankPage = 0;
-	data = memoryManager.ReadMemoryImpl( 0x2AA4, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	data = memoryManager.ReadMemoryImpl( 0x2AA4, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage, currentRam  );
 	ASSERT_EQ( 0x21, data );
 
 	// bank 1
 	cartridgeMemory[0x721F] = 0x58;
 	secondBankPage = 1;
-	data = memoryManager.ReadMemoryImpl( 0x721F, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	data = memoryManager.ReadMemoryImpl( 0x721F, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage, currentRam  );
 	ASSERT_EQ( 0x58, data );
 
-	// catch all
-	internalMemory[0xDFFF] = 0x02;
-	data = memoryManager.ReadMemoryImpl( 0xFFFF, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage  );
+	// bank 2 RAM
+	currentRam = 0;
+	ramBankByte = 0x02;
+	data = memoryManager.ReadMemoryImpl( 0x982B, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage, currentRam  );
 	ASSERT_EQ( 0x02, data );
+
+	// bank 2 ROM
+	currentRam = -1;
+	cartridgeMemory[0x1AED3] = 0xF8;
+	thirdBankPage = 6;
+	data = memoryManager.ReadMemoryImpl( 0xAED3, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage, currentRam  );
+	ASSERT_EQ( 0xF8, data );
+
+
+	// catch all
+	internalMemory[0xDFFF] = 0x07;
+	data = memoryManager.ReadMemoryImpl( 0xFFFF, isCodeMasters, cartridgeMemory, internalMemory, ramBankByte, firstBankPage, secondBankPage, thirdBankPage, currentRam  );
+	ASSERT_EQ( 0x07, data );
 
 
 	delete internalMemory;
