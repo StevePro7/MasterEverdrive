@@ -3,6 +3,19 @@
 
 #include "Defines.h"
 
+// MEMORY MAP	
+// http://www.codeslinger.co.uk/pages/projects/mastersystem/memory.html
+// 0x0000 - 0x3FFF : ROM Slot 1				16KB
+// 0x4000 - 0x7FFF : ROM Slot 2				16KB
+// 0x8000 - 0xBFFF : ROM Slot 3 / RAM Slot	16KB [RAM takes precedence]
+// 0xC000 - 0xDFFF : RAM					 8KB
+// 0xE000 - 0xFFFF : RAM [Mirrored]			 8KB
+
+// 0xFFFC: Memory Control Register
+// 0xFFFD: Writing a value to this address maps that values page into slot 1
+// 0xFFFE: Writing a value to this address maps that values page into slot 2
+// 0xFFFF: Writing a value to this address maps that values page into slot 3
+
 namespace Everdrive
 {
 	typedef BYTE ( *Z80ReadMemory )( WORD );
