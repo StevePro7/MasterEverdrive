@@ -15,5 +15,7 @@ protected:
 TEST_F( ConfigManagerTests, Load )
 {
 	configManager.Load();
-	char* data = configManager.GetData();
+	configManager.GetRomFile();
+	//char* romFile = configManager.GetRomFile();
+	//printf( "%s", romFile );
 }

@@ -19,7 +19,7 @@ namespace Everdrive
 			return m_iConfig[index];
 		}
 
-		char* GetData() { return m_rom_file; }
+		char* GetRomFile() { return m_rom_file; }
 
 	private:
 		void LogConfiguration();
