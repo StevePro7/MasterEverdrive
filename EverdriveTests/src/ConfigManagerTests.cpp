@@ -12,6 +12,10 @@ protected:
 	ConfigManager configManager;
 };
 
+//TEST_F( ConfigManagerTests, Init )
+//{
+//}
+
 TEST_F( ConfigManagerTests, Load )
 {
 	configManager.Load();
