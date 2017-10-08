@@ -23,12 +23,12 @@ namespace Everdrive
 		}
 
 		// Load configuration.
-		char buffer[256];
+		char buffer[MAX_FILENAME];
 		char cnt = 0;
 
-		while (!myfile.eof())
+		while ( !myfile.eof() )
 		{
-			myfile.getline( buffer, 100 );
+			myfile.getline( buffer, MAX_FILENAME );
 			m_iConfig[cnt++] = atoi( buffer );
 		}
 
@@ -38,24 +38,24 @@ namespace Everdrive
 	void ConfigManager::Load()
 	{
 		// Config values.
-		//std::ifstream myfile;
-		//myfile.open( ROMFILE_FILENAME, std::ifstream::in );
+		std::ifstream myfile;
+		myfile.open( ROMFILE_FILENAME, std::ifstream::in );
 
-		//if ( myfile.fail() )
-		//{
-		//	myfile.clear(std::ios::failbit);
-		//	return;
-		//}
+		if ( myfile.fail() )
+		{
+			myfile.clear( std::ios::failbit );
+			return;
+		}
 
-		//// Load configuration.
-		//char buffer[256];
-		//while (!myfile.eof())
-		//{
-		//	myfile.getline (buffer,100);
-		//	m_rom_file = buffer;
-		//}
+		// Load configuration.
+		char buffer[MAX_FILENAME];
+		while ( !myfile.eof() )
+		{
+			myfile.getline( buffer, MAX_FILENAME );
+			memcpy( m_rom_file, buffer, MAX_FILENAME );
+		}
 
-		//myfile.close();
+		myfile.close();
 	}
 
 	void ConfigManager::LogConfiguration()

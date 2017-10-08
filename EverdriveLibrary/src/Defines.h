@@ -9,7 +9,7 @@
 #define EIGHTKILOBYTE	  0x2000			//     8,192	 8KB
 #define FOUR_KILOBYTE	  0x1000			//     8,096	 4KB
 
-#define MAX_FILENAME		256
+#define MAX_FILENAME		32
 
 namespace Everdrive
 {

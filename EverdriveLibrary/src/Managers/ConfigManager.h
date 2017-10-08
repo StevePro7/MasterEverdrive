@@ -1,6 +1,8 @@
 #ifndef _CONFIG_MANAGER_H_
 #define _CONFIG_MANAGER_H_
 
+#include "Defines.h"
+
 namespace Everdrive
 {
 	class ConfigManager
@@ -17,9 +19,12 @@ namespace Everdrive
 			return m_iConfig[index];
 		}
 
+		char* GetData() { return m_rom_file; }
+
 	private:
 		void LogConfiguration();
 		short m_iConfig[10];
+		char m_rom_file[MAX_FILENAME];
 	};
 }
 
