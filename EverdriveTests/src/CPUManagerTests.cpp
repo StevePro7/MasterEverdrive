@@ -17,6 +17,22 @@ protected:
 	CPUManager cpuManager;
 };
 
+TEST_F( CPUManagerTests, ExecuteEDOpcode )
+{
+	// IM 1
+	BYTE opcode1 = 0xED;
+	BYTE opcode2 = 0x56;
+
+	CONTEXTZ80* context = cpuManager.GetContext();
+	context->m_ProgramCounter = 1;
+
+	cpuManager.ExecuteEDOpcode( opcode1, opcode2 );
+
+	ASSERT_EQ( 1, context->m_InteruptMode );
+	ASSERT_EQ( 8, context->m_OpcodeCycle );
+	ASSERT_EQ( 3, context->m_ProgramCounter );
+}
+/*
 TEST_F( CPUManagerTests, IncreaseRReg )
 {
 	CONTEXTZ80* context = cpuManager.GetContext();
@@ -28,17 +44,6 @@ TEST_F( CPUManagerTests, IncreaseRReg )
 	context->m_RegisterR = 127;
 	cpuManager.IncreaseRReg();
 	ASSERT_EQ( 0x00, context->m_RegisterR );
-}
-
-TEST_F( CPUManagerTests, ExecuteOpcode )
-{
-	BYTE opcode = 0xF3;		// DI
-	cpuManager.ExecuteOpcode( opcode );
-
-	CONTEXTZ80* context = cpuManager.GetContext();
-	ASSERT_EQ( false, context->m_IFF1 );
-	ASSERT_EQ( false, context->m_IFF2 );
-	ASSERT_EQ( 5, context->m_OpcodeCycle );
 }
 
 TEST_F( CPUManagerTests, Init )
@@ -72,3 +77,15 @@ TEST_F( CPUManagerTests, Init )
 	ASSERT_EQ( false, context->m_NMI );
 	ASSERT_EQ( false, context->m_NMIServicing );
 }
+
+TEST_F( CPUManagerTests, ExecuteOpcode )
+{
+	BYTE opcode = 0xF3;		// DI
+	cpuManager.ExecuteOpcode( opcode );
+
+	CONTEXTZ80* context = cpuManager.GetContext();
+	ASSERT_EQ( false, context->m_IFF1 );
+	ASSERT_EQ( false, context->m_IFF2 );
+	ASSERT_EQ( 4, context->m_OpcodeCycle );
+}
+*/

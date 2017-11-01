@@ -33,7 +33,7 @@ namespace Everdrive
 
 	void CPUManager::Execute()
 	{
-		IncreaseRReg();
+		
 
 		BYTE opcode = 0xF3;
 		ExecuteOpcode( opcode );
@@ -41,12 +41,29 @@ namespace Everdrive
 
 	void CPUManager::ExecuteOpcode( BYTE opcode )
 	{
+		IncreaseRReg();
+		m_ContextZ80.m_ProgramCounter++ ;
+
 		switch( opcode )
 		{
 		case 0xF3:
 			m_ContextZ80.m_IFF1 = false;
 			m_ContextZ80.m_IFF2 = false;
 			m_ContextZ80.m_OpcodeCycle = 4;
+			break;
+		}
+	}
+
+	void CPUManager::ExecuteEDOpcode( BYTE opcode1, BYTE opcode2 )
+	{
+		IncreaseRReg();
+		m_ContextZ80.m_ProgramCounter += 2;
+
+		switch( opcode2 )
+		{
+		case 0x56:
+			m_ContextZ80.m_InteruptMode = 1;
+			m_ContextZ80.m_OpcodeCycle = 8;
 			break;
 		}
 	}

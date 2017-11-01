@@ -14,6 +14,8 @@ namespace Everdrive
 		void Init();
 		void Execute();
 		void ExecuteOpcode( BYTE opcode );
+		void ExecuteEDOpcode( BYTE opcode1, BYTE opcode2 );
+
 		void IncreaseRReg();
 
 		CONTEXTZ80* GetContext() { return &m_ContextZ80; }
