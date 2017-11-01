@@ -8,8 +8,30 @@ using namespace Everdrive;
 class CPUManagerTests : public ::testing::Test
 {
 protected:
+	virtual void SetUp()
+	{
+		cpuManager.Init();
+	}
+	virtual void TearDown() {}
+
 	CPUManager cpuManager;
 };
+
+TEST_F( CPUManagerTests, IncreaseRReg )
+{
+	CONTEXTZ80* context = cpuManager.GetContext();
+
+	cpuManager.IncreaseRReg();
+	ASSERT_EQ( 0x01, context->m_RegisterR );
+
+	context->m_RegisterR = 127;
+	cpuManager.IncreaseRReg();
+	ASSERT_EQ( 0x00, context->m_RegisterR );
+}
+
+TEST_F( CPUManagerTests, ExecuteOpcode )
+{
+}
 
 TEST_F( CPUManagerTests, Init )
 {

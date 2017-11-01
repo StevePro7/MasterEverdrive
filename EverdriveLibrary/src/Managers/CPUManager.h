@@ -12,6 +12,8 @@ namespace Everdrive
 		~CPUManager()    {}
 
 		void Init();
+		void ExecuteOpcode( BYTE opcode );
+		void IncreaseRReg();
 
 		CONTEXTZ80* GetContext() { return &m_ContextZ80; }
 
