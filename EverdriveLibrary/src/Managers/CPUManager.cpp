@@ -31,9 +31,24 @@ namespace Everdrive
 		context->m_EIPending = false;
 	}
 
+	void CPUManager::Execute()
+	{
+		IncreaseRReg();
+
+		BYTE opcode = 0xF3;
+		ExecuteOpcode( opcode );
+	}
+
 	void CPUManager::ExecuteOpcode( BYTE opcode )
 	{
-		m_ContextZ80.m_OpcodeCycle = 4;
+		switch( opcode )
+		{
+		case 0xF3:
+			m_ContextZ80.m_IFF1 = false;
+			m_ContextZ80.m_IFF2 = false;
+			m_ContextZ80.m_OpcodeCycle = 4;
+			break;
+		}
 	}
 
 	void CPUManager::IncreaseRReg()

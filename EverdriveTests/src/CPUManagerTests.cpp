@@ -21,6 +21,7 @@ TEST_F( CPUManagerTests, IncreaseRReg )
 {
 	CONTEXTZ80* context = cpuManager.GetContext();
 
+	context->m_RegisterR = 0;
 	cpuManager.IncreaseRReg();
 	ASSERT_EQ( 0x01, context->m_RegisterR );
 
@@ -31,6 +32,13 @@ TEST_F( CPUManagerTests, IncreaseRReg )
 
 TEST_F( CPUManagerTests, ExecuteOpcode )
 {
+	BYTE opcode = 0xF3;		// DI
+	cpuManager.ExecuteOpcode( opcode );
+
+	CONTEXTZ80* context = cpuManager.GetContext();
+	ASSERT_EQ( false, context->m_IFF1 );
+	ASSERT_EQ( false, context->m_IFF2 );
+	ASSERT_EQ( 5, context->m_OpcodeCycle );
 }
 
 TEST_F( CPUManagerTests, Init )

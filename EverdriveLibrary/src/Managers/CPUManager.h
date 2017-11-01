@@ -12,6 +12,7 @@ namespace Everdrive
 		~CPUManager()    {}
 
 		void Init();
+		void Execute();
 		void ExecuteOpcode( BYTE opcode );
 		void IncreaseRReg();
 
